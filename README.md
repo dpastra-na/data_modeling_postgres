@@ -6,7 +6,7 @@ Currently, their data resides in a directory of JSON logs on user activity on th
 
 To optimize queries on song play analysis **a star schema** base on the information availabe is implemented.  
 
-#Fact Table
+# Fact Table
 
 | **songplays** |
 |--------------|
@@ -20,13 +20,22 @@ To optimize queries on song play analysis **a star schema** base on the informat
 | location |
 | user_agent |
 
-#Dimension Tables
+# Dimension Tables
 
 | **users** |
+|-----------|
+| user_id |
+| first_name |
+| last_name |
+| gender |
+| level |
 
 | **songs** |
+|-----------|
 
 | **artists** |
+|-------------|
 
 
 | ***time* |
+|----------|
