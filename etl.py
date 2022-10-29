@@ -6,6 +6,15 @@ from sql_queries import *
 
 
 def process_song_file(cur, filepath):
+    """
+    Process songs files and insert data into the songs and artist  
+    Postgres Databse tables
+    
+    Params:
+        cur:  Databse cursor
+        filepath: Path to the file to load
+    """
+    
     # open song file
     df = pd.read_json(filepath, typ='series')
 
@@ -14,7 +23,7 @@ def process_song_file(cur, filepath):
                                      'year', 'duration']].values
 
     cur.execute(song_table_insert, song_data)
-
+    
     # insert artist record
     artist_data = df[['artist_id', 'artist_name', 'artist_location', \
                       'artist_latitude', 'artist_longitude']].values
@@ -22,15 +31,23 @@ def process_song_file(cur, filepath):
 
 
 def process_log_file(cur, filepath):
+    """
+    Process event log files and insert data into the time, user 
+    and songplays Database tables
+    
+    Params:
+        cur: Database cursor
+        filepath: Path to the event logs data files
+    """
     # open log file
     df = pd.read_json(filepath, lines=True)
 
     # filter by NextSong action
-    df = df[df['page']=='NextSong']
+    df = df[df['page']=='NextSong'] 
 
     # convert timestamp column to datetime
     t = pd.to_datetime(df['ts'], unit='ms')
-
+    
     # insert time data records
     time_data = (t, t.dt.hour.tolist(), t.dt.day.tolist(), \
                  t.dt.week.tolist(), t.dt.month.tolist(), \
@@ -51,11 +68,11 @@ def process_log_file(cur, filepath):
 
     # insert songplay records
     for index, row in df.iterrows():
-
+        
         # get songid and artistid from song and artist tables
         cur.execute(song_select, (row.song, row.artist, row.length))
         results = cur.fetchone()
-
+        
         if results:
             songid, artistid = results
         else:
@@ -69,6 +86,19 @@ def process_log_file(cur, filepath):
 
 
 def process_data(cur, conn, filepath, func):
+    """
+    Process all the files nested under filepath.
+    
+    Params:
+        cur: Database cursor
+        conn: Database conection Connection
+        filepath: Path to the parent directory
+        func: function to process each file 
+        (process_song_file, process_log_file)
+        
+    Returns:
+        Name of all files to be processed
+    """
     # get all files matching extension from directory
     all_files = []
     for root, dirs, files in os.walk(filepath):
