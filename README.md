@@ -60,7 +60,7 @@ To optimize queries on song play analysis **a star schema** base on the informat
 
 
 ## Files descripttion
-**create_tables.py** drops and creates Database tables. 
-**sql_queries.py** contains all the sql queries to be executed.
-**etl.py** reads and processes files from song_data and log_data and loads them into your tables. 
-**etl.ipynb** reads and processes a single file from song_data and log_data and loads the data into your tables. This notebook contains detailed instructions on the ETL process for each of the tables.
+- **create_tables.py** drops and creates Database tables. 
+- **sql_queries.py** contains all the sql queries to be executed.
+- **etl.py** reads and processes files from song_data and log_data and loads them into your tables. 
+- **etl.ipynb** reads and processes a single file from song_data and log_data and loads the data into your tables. This notebook contains detailed instructions on the ETL process for each of the tables.
