@@ -6,8 +6,14 @@ Currently, their data resides in a directory of JSON logs on user activity on th
 
 To optimize queries on song play analysis **a star schema** base on the information availabe is implemented.  
 
-| Tables   |      Are      |  Cool |
-|----------|:-------------:|------:|
-| col 1 is |  left-aligned | $1600 |
-| col 2 is |    centered   |   $12 |
-| col 3 is | right-aligned |    $1 |
+|   **songplays**  |
+|--------------|
+|  songplay_id |
+|  start_time |
+|  user_id |
+| level |
+| song_id |
+| artist_id |
+| session_id |
+| location |
+| user_agent |
