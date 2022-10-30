@@ -67,7 +67,7 @@ To optimize queries on song play analysis **a star schema** base on the informat
 
 ## How to run
 
-First run ```create_tables.py``` to create the tables in the Databse.
+First run ```create_tables.py``` to create the database and tables.
 
 ```
 python create_tables.py
