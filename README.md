@@ -4,7 +4,7 @@ In this mock project a Postgres database for a small stream music startup is des
 
 Currently, their data resides in a directory of JSON logs on user activity on the app, as well as a directory with JSON metadata on the songs in their app.
 
-To optimize queries on song play analysis **a star schema** base on the information availabe is implemented.  
+To optimize queries on song play analysis **a star schema** base on the information availabe is implemented.
 
 ### Fact Table
 
@@ -22,7 +22,7 @@ To optimize queries on song play analysis **a star schema** base on the informat
 
 ### Dimension Tables
 
-| **users** |   
+| **users** |
 |-----------|
 | user_id |
 | first_name |
@@ -58,9 +58,23 @@ To optimize queries on song play analysis **a star schema** base on the informat
 | weekday |
 
 
-
 ## Files descripttion
-- **create_tables.py** drops and creates Database tables. 
+- **create_tables.py** drops and creates Database tables.
 - **sql_queries.py** contains all the sql queries to be executed.
-- **etl.py** reads and processes files from song_data and log_data and loads them into your tables. 
+- **etl.py** reads and processes files from song_data and log_data and loads them into the database tables.
 - **etl.ipynb** reads and processes a single file from song_data and log_data and loads the data into your tables. This notebook contains detailed instructions on the ETL process for each of the tables.
+
+
+## How to run
+
+First run ```create_tables.py``` to create the tables in the Databse.
+
+```
+python create_tables.py
+```
+
+Once the adecuated SQL queries has been added into ```sql_queries.py``` the ```etl.py``` can be run to processes files and load data into the databse tables.
+
+```
+python etl.py
+```
